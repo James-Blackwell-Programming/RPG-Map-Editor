@@ -2,6 +2,7 @@ const controller = function(data, ui, map){
     
     function buildGameWorld(){
         map.genMap();
+        
     }
 
 
