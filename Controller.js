@@ -10,6 +10,6 @@ const controller = function(data, ui, map){
             buildGameWorld();
         }
     }
-}(DATA_Controller, UI_Controller, map_editor);
+}(data_controller, ui_controller, mapEditor);
 
 controller.init();
