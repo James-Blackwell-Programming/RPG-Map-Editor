@@ -1,4 +1,5 @@
 import genContainer from './genContainer.js';
+import mapEditorMenu from './mapEditorMenu.js';
 
 //constructor for mapCell objects
 function MapCell(id, div, hasPlayer, hasChest, solid){
@@ -19,8 +20,9 @@ function genMap(mapDims){
     root.style.setProperty('--map-width', mapDims.mapWidth);
     root.style.setProperty('--map-height', mapDims.mapHeight);
 
-    let container = genContainer('70vw', '90vh', 'mapContainer');
-    
+    let mapEditorContainer = genContainer('70vw', '90vh', 'mapEditorContainer');
+    let mapContainer = genContainer('70vw', '70vh', 'mapContainer');
+
     //generate array of mapCells
     for(let i = 0; i < totalCells; i++){
 
@@ -29,19 +31,33 @@ function genMap(mapDims){
 
         let cell = new MapCell(i, div, false, false, false);
 
-        mapArr.push(cell);
+        div.addEventListener('click', () => {
+            if(solidOptionSelected){
+                cell.solid = true;
 
+            }else{
+                cell.solid = false;
+            }
+
+            if(cell.solid){
+                div.style.backgroundColor = 'lightgrey';
+            }
+            //logs the current clicked cell
+            console.log(cell);    
+        });
+        mapArr.push(cell);
     }
 
-    console.log(mapArr);
     //put MapCell divs into container css grid
     mapArr.forEach(cell => {
-        container.appendChild(cell.div);
+        mapContainer.appendChild(cell.div);
     });
 
+    mapEditorContainer.appendChild(mapContainer);
+    mapEditorContainer.appendChild(mapEditorMenu());
     
 
-    return container;
+    return mapEditorContainer;
 }
 
 export default genMap;

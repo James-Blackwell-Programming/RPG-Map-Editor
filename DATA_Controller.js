@@ -1,8 +1,8 @@
 const data_controller = function(){
 
     //map dimensions
-    let mapWidth = 5;
-    let mapHeight = 5;
+    let mapWidth = 21;
+    let mapHeight = 21;
 
     return{
 
