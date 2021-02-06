@@ -43,14 +43,35 @@ function mapEditorMenu(){
         menuContainer.appendChild(BTN.div);
     });
 
-    console.log(optionsBTNArr);
+    optionsBTNArr.forEach(item => {    
+        item.div.addEventListener('click', () => {
+            optionsBTNArr.forEach(BTNSelected => {
+                BTNSelected.selected = false;
+            });
 
-    
+            item.selected = true;
 
-    
-    
+            checkState();
+            });           
+    });
 
-    return menuContainer;
+    function checkState(){
+        optionsBTNArr.forEach(item => {
+            if(item.selected){
+                item.div.style.backgroundColor = 'green';
+            }else{
+                item.div.style.backgroundColor = 'white';
+            }
+        });
+    }
+
+    let menuItems = {
+        BTNArr: optionsBTNArr,
+        container: menuContainer
+    }
+
+
+    return menuItems;
 }
 
 export default mapEditorMenu;
