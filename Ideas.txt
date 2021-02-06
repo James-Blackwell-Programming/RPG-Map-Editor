@@ -1,0 +1,3 @@
+map editor features:
+1. cell based map of variable width and height
+2. 

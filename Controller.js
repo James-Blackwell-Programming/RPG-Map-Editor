@@ -1,7 +1,14 @@
-const controller = function(data, ui, map){
+import genMap from './map_editor.js';
+
+const controller = function(data, ui){
+
+    //main UI elements
+    let gameUI = {
+        map: genMap(data.getMapDims())
+    }
     
     function buildGameWorld(){
-        map.genMap();
+        ui.drawMap(gameUI.map);
         
     }
 
@@ -11,6 +18,6 @@ const controller = function(data, ui, map){
             buildGameWorld();
         }
     }
-}(data_controller, ui_controller, mapEditor);
+}(data_controller, ui_controller);
 
 controller.init();

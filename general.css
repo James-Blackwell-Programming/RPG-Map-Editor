@@ -1,0 +1,26 @@
+:root{
+    --map-width: 11;
+    --map-height: 11;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    position: relative;
+    border: 1px solid black;
+}
+
+#mapContainer{
+    display: grid;
+    grid-template-columns: repeat(var(--map-width), 1fr);
+    grid-template-rows: repeat(var(--map-height), 1fr);
+}
+
+.mapcell{
+    position: relative;
+    border: 0.5px solid black;
+}
