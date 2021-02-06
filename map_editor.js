@@ -1,5 +1,6 @@
 import genContainer from './genContainer.js';
 import mapEditorMenu from './mapEditorMenu.js';
+import genTile from './genTile.js';
 
 //constructor for mapCell objects
 function MapCell(id, div, hasPlayer, hasChest, hasForest, hasRoad, solid){
@@ -34,43 +35,6 @@ function genMap(mapDims){
 
         let cell = new MapCell(i, div, false, false, false, false, false);
 
-        div.addEventListener('click', () => {
-            menu.BTNArr.forEach(BTN => {
-                if(BTN.selected){
-                    switch(BTN.option){
-                        case 'clear':
-                            cell.hasChest = false;
-                            cell.hasForest = false;
-                            cell.hasRoad = false;
-                            cell.solid = false;
-                            cell.div.style.background = 'none';                           
-                            break;
-                        case 'solid':
-                            cell.hasChest = false;
-                            cell.hasForest = false;
-                            cell.hasRoad = false;
-                            cell.solid = true;
-                            cell.div.style.backgroundColor = 'black';
-                            break;
-                        case 'forest':
-                            cell.hasChest = false;
-                            cell.hasForest = true;
-                            cell.hasRoad = false;
-                            cell.solid = false;
-                            cell.div.style.backgroundColor = 'darkgreen';
-                            break;
-                        case 'road':
-                            cell.hasChest = false;
-                            cell.hasForest = false;
-                            cell.hasRoad = true;
-                            cell.solid = false;
-                            cell.div.style.backgroundColor = 'lightgrey';
-                            break;
-                    }
-                    console.log(cell);
-                }
-            });
-        });
         mapArr.push(cell);
     }
 
@@ -79,13 +43,16 @@ function genMap(mapDims){
         mapContainer.appendChild(cell.div);
     });
 
-
-
-    mapEditorContainer.appendChild(mapContainer);
-    mapEditorContainer.appendChild(menu.container);
+    let mapEditorObj = {
+        mapEditorContainer: mapEditorContainer,
+        mapContainer: mapContainer,
+        mapArr: mapArr,
+        menu: menu
+    };
     
 
-    return mapEditorContainer;
+    return mapEditorObj;
 }
 
 export default genMap;
+
