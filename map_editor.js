@@ -1,11 +1,12 @@
 import genContainer from './genContainer.js';
 
 //constructor for mapCell objects
-function MapCell(id, div, hasPlayer, hasChest){
+function MapCell(id, div, hasPlayer, hasChest, solid){
     this.id = id;
     this.div = div;
     this.hasPlayer = hasPlayer;
     this.hasChest = hasChest;
+    this.solid = solid;
 };
 
 function genMap(mapDims){
@@ -26,11 +27,13 @@ function genMap(mapDims){
         let div = document.createElement('div');
         div.classList.add('mapcell');
 
-        let cell = new MapCell(i, div, false, false);
+        let cell = new MapCell(i, div, false, false, false);
 
         mapArr.push(cell);
+
     }
 
+    console.log(mapArr);
     //put MapCell divs into container css grid
     mapArr.forEach(cell => {
         container.appendChild(cell.div);
